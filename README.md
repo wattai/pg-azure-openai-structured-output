@@ -21,8 +21,8 @@ Before you can run this project, you will need:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/openai-pydantic-sample.git
-   cd openai-pydantic-sample
+   https://github.com/wattai/pg-azure-openai-structured-output.git
+   cd pg-azure-openai-structured-output
    ```
 2. Set up your environment:
 
@@ -50,13 +50,12 @@ You'll need to provide your Azure OpenAI API credentials in the script (api_key,
 
 To run the example and see the structured output:
 
-1. Modify the script main.py and replace <YOUR_OPENAI_RESOURCE_NAME>, <YOUR_DEPLOYMENT_NAME>, and <YOUR_AZURE_OPENAI_API_KEY> with your actual Azure OpenAI credentials.
+1. Modify the script main.py and replace `<AZURE_OPENAI_GPT4O_V2024_05_13_ENDPOINT>`, `<AZURE_OPENAI_GPT4O_V2024_05_13_KEY>`, `<AZURE_OPENAI_GPT4O_V2024_08_06_ENDPOINT>`, and `<AZURE_OPENAI_GPT4O_V2024_08_06_KEY>` with your actual Azure OpenAI credentials.
 
 2. Run the script:
 
    ```bash
-   python main.py
+   python scripts/001-run.py
    ```
 
    The script will make a call to the Azure OpenAI API, request a structured JSON response, and parse the response into a pydantic model.
-
