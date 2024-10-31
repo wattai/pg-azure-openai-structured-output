@@ -7,12 +7,13 @@ name = "openai-pydantic-sample"
 version = "0.1.0"
 description = "Sample project to use Azure OpenAI with Pydantic models"
 authors = [
-    { name="Your Name", email="your-email@example.com" }
+    { name="wattai", email="evamark.wattai@gmail.com" }
 ]
 readme = "README.md"
 dependencies = [
     "openai~=1.52.0",    # Azure OpenAI API を利用するため
-    "pydantic~=2.9.2",  # Pydantic モデルを使用するため
+    "pydantic[email]~=2.9.2",  # Pydantic モデルを使用するため
     "requests~=2.32.3"   # openai ライブラリが依存している requests ライブラリ
 ]
-
+[project.optional-dependencies]
+dev = ["ruff", "pre-commit"]

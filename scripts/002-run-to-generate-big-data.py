@@ -2,27 +2,20 @@ import os
 
 from openai import AzureOpenAI
 from pydantic import BaseModel, ValidationError
-from typing import List, Optional
+from typing import Optional
 
-ENDPOINT_V2024_05_13 = os.getenv("AZURE_OPENAI_GPT4O_V2024_05_13_ENDPOINT")
-KEY_V2024_05_13 = os.getenv("AZURE_OPENAI_GPT4O_V2024_05_13_KEY")
+from more_large_model import ParentModel as ResponseModel
 
 ENDPOINT_V2024_08_06 = os.getenv("AZURE_OPENAI_GPT4O_V2024_08_06_ENDPOINT")
 KEY_V2024_08_06 = os.getenv("AZURE_OPENAI_GPT4O_V2024_08_06_KEY")
 
 # Azure OpenAI API の設定
-client_v2024_05_13 = AzureOpenAI(
-    azure_endpoint=ENDPOINT_V2024_05_13,
-    api_key=KEY_V2024_05_13,
-    api_version="2024-08-01-preview",
-)
 client_v2024_08_06 = AzureOpenAI(
     azure_endpoint=ENDPOINT_V2024_08_06,
     api_key=KEY_V2024_08_06,
     api_version="2024-08-01-preview",
 )
 clients = [
-    client_v2024_05_13,
     client_v2024_08_06,
 ]
 
@@ -34,8 +27,8 @@ class Person(BaseModel):
     email: Optional[str]
 
 
-class ResponseModel(BaseModel):
-    people: List[Person]
+# class ResponseModel(BaseModel):
+#    people: List[Person]
 
 
 # Azure OpenAI API にリクエストを送信して結果を取得する関数
@@ -85,7 +78,6 @@ def parse_response_to_model(response_text: str) -> str | None:
 # メイン処理
 if __name__ == "__main__":
     version_to_client = {
-        "v2024-05-13": client_v2024_05_13,
         "v2024-08-06": client_v2024_08_06,
     }
 
@@ -97,17 +89,6 @@ if __name__ == "__main__":
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt},
     ]
-
-    print("# RUN ON: v2024-05-13")
-    # Azure OpenAI からの出力を取得
-    response_text = get_openai_response(
-        client=client_v2024_05_13,
-        messages=messages,
-    )
-    print("## Raw Response:")
-    print(f"TYPE: {type(response_text)}")
-    print(response_text)
-    print()
 
     print("# RUN ON: v2024-08-06")
     # Azure OpenAI からの出力を取得
