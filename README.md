@@ -1,5 +1,7 @@
 # OpenAI Pydantic Sample
 
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 This is a sample project demonstrating how to use Azure OpenAI API to generate structured outputs that conform to a specific `pydantic` model. The project includes a Python script that connects to Azure OpenAI, sends a prompt, and then parses the response into a structured format using `pydantic`.
 
 ## Features
